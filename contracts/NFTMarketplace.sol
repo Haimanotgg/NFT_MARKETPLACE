@@ -16,6 +16,8 @@ contract NFTMarketplace is ERC721URIStorage {
     Counters.Counter private _tokenIds;
     Counters.Counter private _itemsSold;
     
+    uint256 listingPrice = 0.0015 ether;
+
     address payable owner;
 
     mapping(uint256 => MarketItem) private idMarketItem;
@@ -46,7 +48,18 @@ contract NFTMarketplace is ERC721URIStorage {
      
     }
 
-    function updateListingPrice(uint256 _listingPrice) public payable onlyOwner{
+    function updateListingPrice(uint256 _listingPrice) public payable onlyOwner
+    {
+        listingPrice = _listingPrice;
+    }
 
+    function  getListingprice(uint256) public view returns (uint256) {
+        return listingPrice;
+    }
+
+    //CREATE NFT TOKEN FUNCTION
+
+    function createToken( string memory tokenURI, uint256 price) public payable returns (uint256) {
+        
     }
 }
