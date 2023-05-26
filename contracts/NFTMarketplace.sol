@@ -27,4 +27,26 @@ contract NFTMarketplace is ERC721URIStorage {
         uint256 price;
         bool sold;
     }
+
+    event idMarketItemCreated(
+        uint256 indexed tokenId,
+        address seller,
+        address owner,
+        uint256 price,
+        bool sold
+    );
+
+    modifier onlyOwner{
+        require(msg.sender == owner, 
+        "only owner of the marketplace can change the listing price " );
+    _;
+    }
+    constructor() ERC721("NFT Metaverse Token" , "MYNFT"){
+         owner == payable (msg.sender);
+     
+    }
+
+    function updateListingPrice(uint256 _listingPrice) public payable onlyOwner{
+
+    }
 }
